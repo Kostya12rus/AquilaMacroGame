@@ -18,12 +18,12 @@ function AquilaMacroGame.OnUpdate()
   if not Menu.IsEnabled(AquilaMacroGame.optionEnable) then return end
   local myHero = Heroes.GetLocal()
   if not myHero then return end
-  if timer <= GameRules.GetGameTime() and Entity.IsAlive(myHero) then
+  if timer <= GameRules.GetGameTime() and Entity.IsAlive(myHero) and not NPC.HasState(myHero, Enum.ModifierState.MODIFIER_STATE_INVISIBLE) then
     if NPC.HasItem(myHero,"item_ring_of_basilius") and basilius_triger then
       ring = NPC.GetItem(myHero,"item_ring_of_basilius")
       AquilaMacroGame.RingGame(ring)
     end
-    if NPC.HasItem(myHero,"item_ring_of_aquila") and aquila_triger then
+    if NPC.HasItem(myHero,"item_ring_of_aquila") and aquila_triger and not NPC.HasState(myHero, Enum.ModifierState.MODIFIER_STATE_INVISIBLE) then
       ring = NPC.GetItem(myHero,"item_ring_of_aquila")
       AquilaMacroGame.RingGame(ring)
 	end
